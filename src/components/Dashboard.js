@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { handleInitialPolls } from '../actions/shared'
 
 class Dashboard extends Component {
+    state = {
+        selectedTab: 'unanswered'
+    }
     
+    componentDidMount() {
+        this.props.dispatch(handleInitialPolls())
+    }
+
     render() {
-        console.log(this.props)
+        console.log("errordddddd: ",this.props)
         return (
             <div>
                 <h3>Dashboard</h3>
@@ -21,7 +29,7 @@ class Dashboard extends Component {
     }
 }
 
-function mapStateToProps({polls, authedUser, users}) {
+function mapStateToProps({polls, authedUser, users, loadingBar}) {
     const user = users[authedUser]
     const answeredPolls = Object.keys(polls).length !== 0
         ? Object.keys(user.answers)
@@ -35,7 +43,8 @@ function mapStateToProps({polls, authedUser, users}) {
         : []
     return {
         answeredPolls,
-        unansweredPolls
+        unansweredPolls,
+        loadingBar
     }
 }
 

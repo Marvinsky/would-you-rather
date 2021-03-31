@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialPolls } from '../actions/shared'
+import TitleBar from './TitleBar'
+import Poll from './Poll'
 
 class Dashboard extends Component {
     state = {
@@ -12,24 +14,55 @@ class Dashboard extends Component {
     }
 
     render() {
-        console.log("errordddddd: ",this.props)
+        const { answeredPolls, unansweredPolls, loadingBar } = this.props
         return (
-            <div>
-                <h3>Dashboard</h3>
-                <ul>
-                    {this.props.answeredPolls.map((id) => (
-                        <li key={id}>
-                            <div>POLL ID : {id}</div>
-                        </li>
-                    ))}
-
+            <Fragment>
+                <TitleBar />
+                <ul className='toggler'>
+                    <li
+                        className={ this.state.selectedTab === 'unanswered' ? 'active' : 'li-hover'}
+                        onClick={() => {this.setState({selectedTab: 'unanswered'})}}>
+                        unanswered
+                    </li>
+                    <li
+                        className={ this.state.selectedTab === 'answered' ? 'active' : 'li-hover' }
+                        onClick={() => {this.setState({selectedTab: 'answered'})}}>
+                        Answered
+                    </li>
                 </ul>
-            </div>
+                {
+                    !loadingBar.default && Object.keys(unansweredPolls).length === 0 && this.state.selectedTab === 'unanswered'
+                    ? <p className='no-results'>no results</p>
+                    : null
+                }
+                {
+                    !loadingBar.default && Object.keys(answeredPolls).length === 0 && this.state.selectedTab === 'answered'
+                    ? <p className='no-results'>no results</p>
+                    : null
+                }
+                { 
+                    loadingBar.default
+                    ? <p className='loading'>Loading ...</p>
+                    : this.state.selectedTab === 'unanswered' && Object.keys(unansweredPolls).length !== 0
+                        ? <div className='question-form margin'>
+                            {unansweredPolls.map((id) => (
+                            <Poll key={id} id={id}/> ))}
+                        </div>     
+                        : this.state.selectedTab === 'answered' && Object.keys(answeredPolls).length !== 0
+                        ? <div className='question-form margin'>
+                            {answeredPolls.map((id) => (
+                            <Poll key={id} id={id}/> ))}
+                        </div>     
+                        : null
+                 } 
+            </Fragment>
         )
     }
 }
 
 function mapStateToProps({polls, authedUser, users, loadingBar}) {
+    console.log('polls: ', polls)
+    
     const user = users[authedUser]
     const answeredPolls = Object.keys(polls).length !== 0
         ? Object.keys(user.answers)

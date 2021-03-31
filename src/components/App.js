@@ -4,9 +4,11 @@ import { handleInitialUsers } from '../actions/shared'
 import Dashboard from './Dashboard'
 import LoadingBar from 'react-redux-loading'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Login from '../components/Login'
-import PollDetails from '../components/PollDetails'
-import AddPoll from '../components/AddPoll'
+import Login from './Login'
+import PollDetails from './PollDetails'
+import AddPoll from './AddPoll'
+import Leaderboard from './Leaderboard'
+import Page404 from './Page404'
 
 class App extends Component {
     componentDidMount() {
@@ -27,8 +29,10 @@ class App extends Component {
                                 <Route path='/' exact component={Dashboard} />
                                 <Route path='/questions/:questions_id' component={PollDetails} />
                                 <Route path='/add' exact component={AddPoll} />
+                                <Route path='/leaderboard' exact component={Leaderboard}/>
                             </Fragment>
                         }
+                        <Route component={Page404} />
                     </Switch>
                 </Fragment>
             </Router>

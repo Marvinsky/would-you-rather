@@ -29,19 +29,16 @@ export function handleInitialUsers(AUTHED_ID) {
     }
 }
 
-export function handleSavePollAnswer(qid, answer) {
-    ('35 handleSavePollAnswer qid: ', qid)
-    console.log('handleSavePollAnswer answer: ', answer)
+export function handleSavePollAnswer (qid, answer) {
     return (dispatch, getState) => {
-        dispatch(showLoading)
         const { authedUser } = getState()
-        console.log('authedUser: ', authedUser)
+        dispatch(showLoading())
         return savePollAnswerAPI({authedUser, qid, answer})
             .then(() => {
                 dispatch(savePollAnswer(authedUser, qid, answer))
                 dispatch(saveUserAnswer(authedUser, qid, answer))
                 dispatch(hideLoading())
-            })
+            })  
     }
 }
 

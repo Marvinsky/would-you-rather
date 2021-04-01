@@ -16,7 +16,6 @@ class App extends Component {
         this.props.dispatch(handleInitialUsers(AUTHED_ID))
     }
     render() {
-        console.log("notnull: ", this.props.authedUser)
         return (
             <Router>
                 <Fragment>

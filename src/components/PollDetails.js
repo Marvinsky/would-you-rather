@@ -141,7 +141,6 @@ function mapStateToProps({authedUser, polls, users}, props) {
 
 function mapDispatchToProps(dispatch, props) {
     const { question_id } = props.match.params
-    console.log('question_id: ', question_id)
     return {
         savePollAnswer: (answer) => {
             dispatch(handleSavePollAnswer(question_id, answer))

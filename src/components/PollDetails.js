@@ -113,7 +113,6 @@ class PollDetails extends Component {
 function mapStateToProps({authedUser, polls, users}, props) {
     const { question_id } = props.match.params
     const poll = polls[question_id]
-    console.log('line 116: ', poll)
     const authorAvatar = users[poll.author].avatarURL
     const author = users[poll.author].id
     const timestamp = formatDate(poll.timestamp)

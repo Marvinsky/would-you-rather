@@ -11,10 +11,8 @@ export function handleInitialPolls() {
         dispatch(showLoading)
         return getInitialPolls()
             .then((questions) => {
-                console.log('14 questions: ', questions)
                 dispatch(receivePolls(questions))
                 dispatch(hideLoading())
-                console.log('end calling polls')
             })
     }
 }
@@ -32,7 +30,7 @@ export function handleInitialUsers(AUTHED_ID) {
 }
 
 export function handleSavePollAnswer(qid, answer) {
-    console.log('35 handleSavePollAnswer qid: ', qid)
+    ('35 handleSavePollAnswer qid: ', qid)
     console.log('handleSavePollAnswer answer: ', answer)
     return (dispatch, getState) => {
         dispatch(showLoading)

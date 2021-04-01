@@ -24,6 +24,7 @@ export function savePollAPI(info) {
 }
 
 export function savePollAnswerAPI(info) {
+    console.log('info: ', info)
     return _saveQuestionAnswer(info)
 }
 

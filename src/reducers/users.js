@@ -23,11 +23,8 @@ export default function user(state = {}, action) {
             return {
                 ...state,
                 [action.authedUser]: {
-                    ...state,
-                    [action.authedUser]: {
-                        ...state[action.authedUser],
-                        questions: state[action.authedUser].questions.concat([action.id])
-                    }
+                    ...state[action.authedUser],
+                    questions: state[action.authedUser].questions.concat([action.id])
                 }
             }
         default:

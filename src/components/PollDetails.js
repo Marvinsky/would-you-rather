@@ -113,6 +113,7 @@ class PollDetails extends Component {
 function mapStateToProps({authedUser, polls, users}, props) {
     const { question_id } = props.match.params
     const poll = polls[question_id]
+    console.log('line 116: ', poll)
     const authorAvatar = users[poll.author].avatarURL
     const author = users[poll.author].id
     const timestamp = formatDate(poll.timestamp)
@@ -141,6 +142,7 @@ function mapStateToProps({authedUser, polls, users}, props) {
 
 function mapDispatchToProps(dispatch, props) {
     const { question_id } = props.match.params
+    console.log('question_id: ', question_id)
     return {
         savePollAnswer: (answer) => {
             dispatch(handleSavePollAnswer(question_id, answer))

@@ -15,6 +15,9 @@ class Dashboard extends Component {
 
     render() {
         const { answeredPolls, unansweredPolls, loadingBar } = this.props
+        console.log('answeredPolls: ', answeredPolls)
+        console.log('unansweredPolls: ', unansweredPolls)
+        console.log('loadingBar: ', loadingBar)
         return (
             <Fragment>
                 <TitleBar />
@@ -61,14 +64,17 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({polls, authedUser, users, loadingBar}) {
-    console.log('polls: ', polls)
-    
+    console.log('type: ', typeof(users))
+    console.log('authedUser: ', authedUser)
+    console.log('users: ', users)
     const user = users[authedUser]
+    console.log('user: ', user)
+    console.log('user.answers: ', user.answers)
     const answeredPolls = Object.keys(polls).length !== 0
         ? Object.keys(user.answers)
             .sort((a, b) => polls[b].timestamp - polls[a].timestamp)
         : []
-
+    console.log('73 answeredPolls: ', answeredPolls)
     const unansweredPolls = Object.keys(polls).length !== 0
         ? Object.keys(polls)
             .filter(pollID => !answeredPolls.includes(pollID))

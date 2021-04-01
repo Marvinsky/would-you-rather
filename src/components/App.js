@@ -27,7 +27,7 @@ class App extends Component {
                             ? <Route path='/' exact component={Login} />
                             : <Fragment>
                                 <Route path='/' exact component={Dashboard} />
-                                <Route path='/questions/:questions_id' component={PollDetails} />
+                                <Route path='/questions/:question_id' component={PollDetails} />
                                 <Route path='/add' exact component={AddPoll} />
                                 <Route path='/leaderboard' exact component={Leaderboard}/>
                             </Fragment>

@@ -6,6 +6,8 @@ the details of each poll in tabs called answered/unanswered.
 Additionally we can see a table that shows the position of each
 users for creating and providing answers.
 
+The ```_DATA.js``` file represents a fake database and methods that let you access the data, consisting in users and questions.
+
 ## Steps to install
 
 ```

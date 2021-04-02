@@ -23,7 +23,7 @@ class App extends Component {
                     <Switch>
                         {
                             this.props.authedUser === null
-                            ? <Route path='/' exact component={Login} />
+                            ? <Route component={Login} />
                             : <Fragment>
                                 <Route path='/' exact component={Dashboard} />
                                 <Route path='/questions/:question_id' component={PollDetails} />

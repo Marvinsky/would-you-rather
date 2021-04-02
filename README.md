@@ -1,4 +1,23 @@
-# Getting Started with Create React App
+## Description Project
+
+Udacity project that manage users creating, providing answers
+for polls. We can login/logout with different users and can see
+the details of each poll in tabs called answered/unanswered.
+Additionally we can see a table that shows the position of each
+users for creating and providing answers.
+
+## Steps to install
+
+```
+yarn install
+```
+
+## Start the project
+```
+yarn start
+```
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
